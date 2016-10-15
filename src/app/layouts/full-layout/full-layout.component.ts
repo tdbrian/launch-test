@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  templateUrl: './login.component.html',
+  templateUrl: './full-layout.component.html'
 })
-export class LoginComponent implements OnInit {
+export class FullLayoutComponent implements OnInit {
 
   constructor() { }
 

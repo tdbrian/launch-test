@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  templateUrl: './login.component.html',
+  template: '<router-outlet></router-outlet>'
 })
-export class LoginComponent implements OnInit {
+export class SimpleLayoutComponent implements OnInit {
 
   constructor() { }
 
