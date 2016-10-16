@@ -13,6 +13,10 @@ import { FullLayoutComponent } from './layouts/full-layout/full-layout.component
 import { SimpleLayoutComponent } from './layouts/simple-layout/simple-layout.component';
 import { ServerErrorComponent } from './server-error/server-error.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { BreadcrumbsComponent } from './shared/components/breadcrumb.component';
+import { AsideToggleDirective } from './shared/directives/aside.directive';
+import { SIDEBAR_TOGGLE_DIRECTIVES } from './shared/directives/sidebar.directive';
+import { VerticalAlignMiddleDirective } from './shared/directives/vertical-align-middle.directive';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,11 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     SimpleLayoutComponent,
     RegisterComponent,
     ServerErrorComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    BreadcrumbsComponent,
+    AsideToggleDirective,
+    SIDEBAR_TOGGLE_DIRECTIVES,
+    VerticalAlignMiddleDirective
   ],
   imports: [
     BrowserModule,
@@ -38,11 +46,14 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
         { path: 'login', component: LoginComponent },
         { path: 'register', component: RegisterComponent },
         { path: '404', component: PageNotFoundComponent },
-        { path: '500', component: PageNotFoundComponent }
+        { path: '500', component: ServerErrorComponent }
       ]}
     ])
   ],
-  providers: [DashboardService],
+  providers: [
+    DashboardService,
+    { provide: 'Window',  useValue: window }
+   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
