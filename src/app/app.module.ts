@@ -17,6 +17,7 @@ import { BreadcrumbsComponent } from './shared/components/breadcrumb.component';
 import { AsideToggleDirective } from './shared/directives/aside.directive';
 import { SIDEBAR_TOGGLE_DIRECTIVES } from './shared/directives/sidebar.directive';
 import { VerticalAlignMiddleDirective } from './shared/directives/vertical-align-middle.directive';
+import { SocketioService } from './shared/services/socketio.services';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { VerticalAlignMiddleDirective } from './shared/directives/vertical-align
   ],
   providers: [
     DashboardService,
-    { provide: 'Window',  useValue: window }
+    { provide: 'Window',  useValue: window },
+    SocketioService
    ],
   bootstrap: [AppComponent]
 })
