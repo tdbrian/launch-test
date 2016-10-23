@@ -1,11 +1,10 @@
 import { Request, Response } from 'express';
-
-export interface 
-
-export interface LoginStatus {
-    isAuthenticated: boolean;
-}
+import User from '../shared/models/User';
 
 export const attemptLogin = (req: Request, res: Response): Response => {
-    return res.send({ status: 'login success' });
+    if (req.body.username === 'tdbrian' && req.body.password === 'pa55word') {
+        return res.send(new User('Thomas', 'Brian'));
+    }
+
+    return res.send(500, 'Invalid login request.');
 };

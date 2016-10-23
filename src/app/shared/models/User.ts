@@ -3,10 +3,10 @@ import GUID from './../utils/guid';
 
 export default class User {
     id: string;
-    accountId: string;
+    accountId: string | null;
     firstName: string;
     lastName: string;
-    email: string;
+    email: string | null;
     isAdmin = false;
 
     constructor(firstName, lastName, email = null, isAdmin = false, accountId = null) {

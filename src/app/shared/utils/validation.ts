@@ -8,7 +8,10 @@ export default class Validation {
         return name !== null && name.length > 2;
     }
 
-    static validateEmail(email: string): boolean {
+    static validateEmail(email: string | null): boolean {
+        if (!email) {
+            return false;
+        }
         return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
     }
 }
