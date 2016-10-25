@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import User from '../shared/models/User';
+import User from '../shared/domain/users/User';
 
 export const attemptLogin = (req: Request, res: Response): Response => {
     if (req.body.username === 'tdbrian' && req.body.password === 'pa55word') {

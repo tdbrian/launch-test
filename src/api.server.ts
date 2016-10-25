@@ -5,28 +5,36 @@ import * as socketIo from 'socket.io';
 import webSocketRoutes from './api-socket.routes';
 import httpRoutes from './api-http.routes';
 import * as bodyParser from 'body-parser';
-import { setup, close } from './app/shared/utils/database';
+import { setupDb } from './app/shared/utils/database.functions';
 
-// Ties .env to process.env
-dotenv.config();
+async function startup() {
 
-setup().then(() => {
+    // Ties .env to process.env
+    dotenv.config();
 
-}).catch(() => console.error('Unable to start server due to DB connection issue.'));
+    // Inital database setup
+    await setupDb();
 
-// Setup express
-let app = express();
+    // Setup express
+    let app = express();
 
-// Setup HTTP REST API
-app.use(bodyParser.json());
-httpRoutes(app);
+    // Setup HTTP REST API
+    app.use(bodyParser.json());
+    httpRoutes(app);
 
-// Create HTTP Server
-let server = http.createServer(app);
+    // Create HTTP Server
+    let server = http.createServer(app);
 
-// Setup websockets
-let io = socketIo(server);
-io.on('connection', webSocketRoutes);
+    // Setup websockets
+    let io = socketIo(server);
+    io.on('connection', webSocketRoutes);
 
-// Start listening for HTTP requests
-server.listen(3000);
+    // Start listening for HTTP requests
+    server.listen(3000);
+}
+
+try {
+    startup();
+} catch (error) {
+    console.error(`Application error ${error}`);
+}
